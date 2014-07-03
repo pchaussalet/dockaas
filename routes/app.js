@@ -36,14 +36,14 @@ exports.create = function(req, res, next) {
         fs.mkdir(workdir, function() {
             console.log(workdir);
             fs.writeFile(figFile, fig_yml, function () {
-                console.log(['/usr/local/bin/fig', '-f', figFile, '-p', projectName, 'up', '-d'].join(' '));
-                var fig = childProcess.spawn('/usr/local/bin/fig', ['-f', figFile, 'up', '-d']);
+                var fig = childProcess.spawn('/usr/local/bin/fig', ['-f', figFile, '-p', projectName, 'up', '-d']);
                 fig.on('error', function (err) {
                     log.error(err);
                     return next(err);
                 });
 
                 fig.on('exit', function () {
+                    log.info('Successfully started environment ' + projectName);
                     res.send(204);
                     return next();
                 });
