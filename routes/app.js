@@ -6,7 +6,9 @@ var fs = require('fs');
 var childProcess = require('child_process');
 
 var envDir = path.join(process.cwd(), 'envs');
-fs.mkdirSync(envDir);
+if (!fs.existsSync(envDir)) {
+    fs.mkdirSync(envDir);
+}
 
 exports.list = function(req, res, next) {
     fs.readdir(envDir, function(err, files) {
@@ -34,7 +36,6 @@ exports.create = function(req, res, next) {
         var workdir = path.join(envDir, projectName);
         var figFile = path.join(workdir, 'fig.yml');
         fs.mkdir(workdir, function() {
-            console.log(workdir);
             fs.writeFile(figFile, fig_yml, function () {
                 var fig = childProcess.spawn('/usr/local/bin/fig', ['-f', figFile, '-p', projectName, 'up', '-d']);
                 fig.on('error', function (err) {
