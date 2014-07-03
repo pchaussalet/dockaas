@@ -1,0 +1,26 @@
+{
+  "name": "DockaaS",
+  "version": "0.0.1",
+  "description": "Docker as a Service",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Docker",
+    "SaaS"
+  ],
+  "author": "Pierre Chaussalet <pchaussalet@gmail.com>",
+  "license": "Apache 2",
+  "devDependencies": {
+    "rewire": "^2.0.1",
+    "chai-as-promised": "^4.1.1",
+    "chai": "^1.9.1"
+  },
+  "dependencies": {
+    "then-redis": "^0.3.12",
+    "restify": "^2.8.1",
+    "q": "^1.0.1",
+    "js-yaml": "^3.0.2"
+  }
+}
